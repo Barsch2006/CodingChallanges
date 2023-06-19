@@ -33,13 +33,14 @@ function syntaxHighlighting() {
     for (let line of lines) {
         let html = line;
 
-        html = html.replace(/('.*?')/g, `<span class="string">$&</span>`);
-        html = html.replace(/(".*?")/g, `<span class="string">$&</span>`);
-        html = html.replace(/(`.*?`)/g, `<span class="string">$&</span>`);
-        html = html.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, `<span class="comment">$&</span>`);
-        html = html.replace(/\/\/.+/g, `<span class="comment">$&</span>`);
-        html = html.replace(/(\(|\)|\[|\])/g, `<span class="operator">$&</span>`);
-        html = html.replace(/(\{|\})/g, `<span class="keyword">$&</span>`);
+        html = html.replace(/('.*?')(?![^<>]*>)/g, `<span class="string">$&</span>`);
+        html = html.replace(/(".*?")(?![^<>]*>)/g, `<span class="string">$&</span>`);
+        html = html.replace(/(`.*?`)(?![^<>]*>)/g, `<span class="string">$&</span>`);
+        html = html.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$(?![^<>]*>)/gm, `<span class="comment">$&</span>`);
+        html = html.replace(/\/\/.+(?![^<>]*>)/g, `<span class="comment">$&</span>`);
+        html = html.replace(/(\(|\)|\[|\])(?![^<>]*>)/g, `<span class="operator">$&</span>`);
+        html = html.replace(/(\{|\})(?![^<>]*>)/g, `<span class="keyword">$&</span>`);
+        html = html.replace(/[0-9]+(?![^<>]*>)/gm, `<span class="number">$&</span>`);
 
         // RegExp for operators
         let operators = new RegExp(`\\b(${allOperators.join('|')})\\b(?![^<]*>|[^<>]*<\/)`, 'g');
@@ -48,8 +49,6 @@ function syntaxHighlighting() {
         // RegExp for keywords
         let keywords = new RegExp(`\\b(${allKeywords.join('|')})\\b(?![^<]*>|[^<>]*<\/)`, 'g');
         html = html.replace(keywords, `<span class="keyword">$&</span>`);
-
-        html = html.replace(/[0-9]+/gm, `<span class="number">$&</span>`);
 
         let div = document.createElement('div');
 

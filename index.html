@@ -5,20 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodingChallanges</title>
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="icon" href="img/favicon.png" type="image/png">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/editor.css">
     <link rel="stylesheet" href="styles/syntax.css">
+    <link rel="stylesheet" href="styles/copilot.css">
     <script src="data/data.js"></script>
     <script src="scripts/editor.js" defer></script>
     <script src="scripts/index.js" defer></script>
+    <script src="scripts/copilot.js" defer></script>
 </head>
 
 <body>
     <header>
         <img src="img/favicon.png" alt="CodingChallanges">
-        <a href="index.html">File</a>
-        <a href="help.html">Help</a>
+        <input id="showtasklist" style="display: none;" type="checkbox"
+            onchange="document.querySelector('#tasklist').style.display == 'flex' ? document.querySelector('#tasklist').style.display='none' : document.querySelector('#tasklist').style.display = 'flex'">
+        <label for="showtasklist">Open</label>
+        <nav id="tasklist">
+            
+        </nav>
         <img id="runButton" onclick="submitSolution()" src="img/runIcon.svg" alt="Run">
     </header>
 
@@ -27,18 +33,21 @@
             <div id="editor-linenumbers"></div>
             <div id="editor-code">
                 <div id="editor-code-overlay" class="codeeditor"></div>
-                <textarea id="editor-code-input" class="codeeditor"></textarea>
+                <textarea spellcheck="false" id="editor-code-input" class="codeeditor"></textarea>
             </div>
             <div id="editor-sideline">
                 <section class="sidepanel" id="copilot">
                     <h1>
                         Copilot
                     </h1>
-                    <i style="margin-top: 10px;">
-                        Naah, I'm not gonna help you. You're on your own.
-                    </i>
+                    <nav id="copilot-chat">
+                    </nav>
+                    <div id="copilot-chatform">
+                        <input id="copilot-chatform-msg" type="text">
+                        <button onclick="sendChatMessage()">Send</button>
+                    </div>
                 </section>
-                <button
+                <button class="ninetybtn"
                     onclick="document.querySelector('#copilot').style.display == 'flex' ? document.querySelector('#copilot').style.display = 'none' : document.querySelector('#copilot').style.display = 'flex'">
                     Copilot
                 </button>
@@ -46,7 +55,7 @@
         </section>
 
         <section id="outputconsole">
-            
+
         </section>
     </main>
 

@@ -1,0 +1,39 @@
+/* style #copilot-chatform to the bottom of the sidepanel */
+#copilot-chatform {
+    position: fixed;
+    bottom: 24px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 280px;
+}
+
+#copilot-chatform input {
+    width: calc(100% - 60px);
+    height: calc(100% - 10px);
+    border: none;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+    padding: 0 10px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+#copilot-chatform button {
+    width: calc(60px);
+    height: calc(100% - 10px);
+    border: none;
+    outline: none;
+    background-color: #45b300;
+    color: #fff;
+    padding: 0 10px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+#copilot-chat {
+    margin-top: 10px;
+}

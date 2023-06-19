@@ -71,8 +71,8 @@ header #runButton {
 }
 
 #editor-code-overlay * {
-  padding: none;
-  margin: none;
+  padding: 0;
+  margin: 0;
   border: none;
   outline: none;
   box-sizing: border-box;
@@ -108,7 +108,7 @@ header #runButton {
   border-right: 1px solid #ccc;
 }
 
-#editor-sideline button {
+#editor-sideline .ninetybtn {
   background-color: transparent;
   color: #ccc;
   border: none;
@@ -128,13 +128,14 @@ header #runButton {
   right: 20px;
   top: 40px;
   background-color: #525252;
-  height: 100%;
+  height: calc(100vh - 40px - 24px);
   width: 300px;
   box-sizing: border-box;
   padding: 10px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  z-index: 100;
 }
 
 #outputconsole {

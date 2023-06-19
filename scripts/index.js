@@ -1,53 +1,52 @@
 let taskID = 0;
 
+document.querySelector('#tasklist').innerHTML = data.map((task, index) => `<li onclick="taskID = ${index}; loadTask();">${task.title}</li>`).join('');
+
 function submitSolution() {
     try {
         let code = document.querySelector("#editor-code-input").value;
         eval(code);
-        let param = data[taskID].solutionData;
-        let result = mySolution(param);
-        let correct = data[taskID].solutionCorrect;
-        if (JSON.stringify(result) == JSON.stringify(correct)) {
-            document.querySelector('#outputconsole').style.display = 'flex';
-            document.querySelector('#outputconsole').innerHTML = `Your solution passed the test!`
+        if (data[taskID].compare(mySolution)) {
+            consoleLog('green', 'Your solution passed the test!');
             if (taskID < data.length - 1) {
                 taskID++;
                 loadTask();
-            } else {
-                document.querySelector('#outputconsole').innerHTML = `Congratulations! You have completed all the tasks!`
             }
         } else {
-            document.querySelector('#outputconsole').style.display = 'flex';
-            document.querySelector('#outputconsole').innerHTML = `Your solution did not pass the test!`;
+            consoleLog('red', 'Your solution did not pass the test!');
         }
     } catch (e) {
-        document.querySelector('#outputconsole').style.display = 'flex';
-        document.querySelector('#outputconsole').innerHTML = `There is an error in your code! Please check your code and try again.
-        <br><br>
-        Error: ${e}`;
+        consoleLog('red', `There is an error in your code! Please check your code and try again.<br><br>Error: ${e}`);
     }
+}
+
+
+function consoleLog(mode, message) {
+    document.querySelector('#outputconsole').style.display = 'flex';
+    document.querySelector('#outputconsole').innerHTML = `<p style="color: ${mode};">${message}</p>`;
 }
 
 function loadTask() {
     try {
-    document.querySelector('#outputconsole').style.display = 'none';
-    document.querySelector("#editor-code-input").value = `// ${data[taskID].title}
+        document.querySelector('#outputconsole').style.display = 'none';
+        document.querySelector("#editor-code-input").value = `// ${data[taskID].title}
 // ${data[taskID].description}
 // Given Data: ${data[taskID].testData}
-// Output should be: ${data[taskID].testCorrect}
+// Output should be: ${data[taskID].testOutput}
 
-function mySolution(data) {
-let solution = data;
+function mySolution(${data[taskID].funktionParameters}) {
+let solution = null;
 
 // Your code here
 
 return solution;
 }
 `;
+syntaxHighlighting();
     } catch (e) {
-        alert("Error loading task! Please refresh the page and try again.")
+        console.error(e);
     }
 }
 
+localStorage.clear();
 loadTask();
-syntaxHighlighting();
