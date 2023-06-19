@@ -1,0 +1,29 @@
+.comment {
+    color: #6a9955;
+}
+
+.keyword {
+    color: #c586c0;
+    font-weight: bold;
+}
+
+.operator {
+    color: #1e7ba0;
+}
+
+.string {
+    color: #ce8a55;
+}
+
+.number {
+    color: #b5cea8;
+}
+
+.invisible {
+    color: transparent;
+    opacity: 0;
+}
+
+.function {
+    color: yellow;
+}

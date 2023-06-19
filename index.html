@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodingChallanges</title>
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/editor.css">
+    <link rel="stylesheet" href="styles/syntax.css">
+    <script src="data/data.js"></script>
+    <script src="scripts/editor.js" defer></script>
+    <script src="scripts/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="img/favicon.png" alt="CodingChallanges">
+        <a href="index.html">File</a>
+        <a href="help.html">Help</a>
+        <img id="runButton" onclick="submitSolution()" src="img/runIcon.svg" alt="Run">
+    </header>
+
+    <main>
+        <section id="editor">
+            <div id="editor-linenumbers"></div>
+            <div id="editor-code">
+                <div id="editor-code-overlay" class="codeeditor"></div>
+                <textarea id="editor-code-input" class="codeeditor"></textarea>
+            </div>
+            <div id="editor-sideline">
+                <section class="sidepanel" id="copilot">
+                    <h1>
+                        Copilot
+                    </h1>
+                    <i style="margin-top: 10px;">
+                        Naah, I'm not gonna help you. You're on your own.
+                    </i>
+                </section>
+                <button
+                    onclick="document.querySelector('#copilot').style.display == 'flex' ? document.querySelector('#copilot').style.display = 'none' : document.querySelector('#copilot').style.display = 'flex'">
+                    Copilot
+                </button>
+            </div>
+        </section>
+
+        <section id="outputconsole">
+            
+        </section>
+    </main>
+
+    <footer>
+        <a href="https://github.com/Barsch2006">&copy; 2023 Barsch2006</a>
+    </footer>
+</body>
+
+</html>
