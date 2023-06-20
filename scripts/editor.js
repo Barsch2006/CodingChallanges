@@ -33,6 +33,8 @@ function syntaxHighlighting() {
     for (let line of lines) {
         let html = line;
 
+        html = html.replace(/</g, '&lt;');
+        html = html.replace(/>/g, '&gt;');
         html = html.replace(/('.*?')(?![^<>]*>)/g, `<span class="string">$&</span>`);
         html = html.replace(/(".*?")(?![^<>]*>)/g, `<span class="string">$&</span>`);
         html = html.replace(/(`.*?`)(?![^<>]*>)/g, `<span class="string">$&</span>`);
